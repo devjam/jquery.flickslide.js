@@ -45,6 +45,7 @@ naviarea: navi container
 
 ### example:basic
 >  html
+>  `
 >  <div id="slidearea"><!-- slidearea: total container -->
 >  	<div class="imagearea"><!-- imagearea: image view area -->
 >  		<ul class="slidecontent"><!-- slidecontent: image container -->
@@ -59,13 +60,17 @@ naviarea: navi container
 >  		<li class="navibtn"><a href="javascript:void(0);" onclick="return false;"><img src="img/btn_slide_off.gif" width="17" height="16" /></a></li><!--
 >  	</ul>
 >  </div><!-- /slidearea -->
+>  `
 >  
 >  JavaScript
+>  `
 >  $("#slidearea").FlickSlide({interval:500, resize:true, easing:"easeOutExpo"});
 >  $("#slidearea").FlickSlide.initSlide();
+>  `
 
 ### example:replace image
 >  JavaScript
+>  `
 >  $("#slidearea").FlickSlide({interval:500, resize:true, easing:"easeOutExpo"});
 >  $("#slidearea").FlickSlide.setImage([
 >  	"img/cut1.jpg",
@@ -74,6 +79,7 @@ naviarea: navi container
 >  	"img/cut4.jpg",
 >  	"img/cut5.jpg",
 >  ]);
+>  `
 
 ---
 
