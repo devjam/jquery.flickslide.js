@@ -165,7 +165,7 @@ do (jQuery) ->
 									x = @stage.position().left
 									x *= -1
 									n = Math.round( x / @areaWidth )
-									l = @naviarea.find("a img").size()
+									l = @naviarea.find("a > *").size()
 									next = (n + 1) % l
 									x = next * @areaWidth * -1
 									@stage.animate({left:x}, options.duration)
@@ -189,7 +189,7 @@ do (jQuery) ->
 				@areaHeight = @imagearea.height()
 
 			$.fn.FlickSlide.setNavi = =>
-				currentbtns = @naviarea.find("a img").size()
+				currentbtns = @naviarea.find("a > *").size()
 				l = @imagearea.find("li").size()
 				if l == 1
 					@naviarea.css("display","none")
@@ -204,7 +204,7 @@ do (jQuery) ->
 						i++
 				@naviarea.common?({duration:0})
 
-				@naviarea.find("a img").each (i, el)=>
+				@naviarea.find("a > *").each (i, el)=>
 					if i < l
 						$(el).css("display", "block").click (e)=>
 							@waitTime = 0
@@ -219,13 +219,13 @@ do (jQuery) ->
 			$.fn.FlickSlide.updateNavi = (x)=>
 				v = x * -1
 				n = Math.round ((v) / @areaWidth)
-				l = @naviarea.find("a img").size()
+				l = @naviarea.find("a > *").size()
 				if n > l - 1
 					n = l - 1
 				
 				if n < 0
 					n = 0
-				@naviarea.find("a img").each (i)->
+				@naviarea.find("a > *").each (i)->
 					$(@).removeClass "active"
 					if n != i
 						$(@).trigger "mouseout"
@@ -310,7 +310,7 @@ do (jQuery) ->
 					else if @startX > @pageX
 						x -= @areaWidth * 0.5
 					n = Math.round ((x * -1) / @areaWidth)
-					l = @naviarea.find("a img").size()
+					l = @naviarea.find("a > *").size()
 					if n > l - 1
 						n = l - 1
 					if n < 0

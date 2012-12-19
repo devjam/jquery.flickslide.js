@@ -179,7 +179,7 @@ $("#slidearea").FlickSlide.setImage([
                     x = _this.stage.position().left;
                     x *= -1;
                     n = Math.round(x / _this.areaWidth);
-                    l = _this.naviarea.find("a img").size();
+                    l = _this.naviarea.find("a > *").size();
                     next = (n + 1) % l;
                     x = next * _this.areaWidth * -1;
                     _this.stage.animate({
@@ -213,7 +213,7 @@ $("#slidearea").FlickSlide.setImage([
         };
         $.fn.FlickSlide.setNavi = function() {
           var currentbtns, i, l, _base;
-          currentbtns = _this.naviarea.find("a img").size();
+          currentbtns = _this.naviarea.find("a > *").size();
           l = _this.imagearea.find("li").size();
           if (l === 1) {
             _this.naviarea.css("display", "none");
@@ -233,7 +233,7 @@ $("#slidearea").FlickSlide.setImage([
               duration: 0
             });
           }
-          return _this.naviarea.find("a img").each(function(i, el) {
+          return _this.naviarea.find("a > *").each(function(i, el) {
             if (i < l) {
               return $(el).css("display", "block").click(function(e) {
                 var x;
@@ -255,14 +255,14 @@ $("#slidearea").FlickSlide.setImage([
           var l, n, v;
           v = x * -1;
           n = Math.round(v / _this.areaWidth);
-          l = _this.naviarea.find("a img").size();
+          l = _this.naviarea.find("a > *").size();
           if (n > l - 1) {
             n = l - 1;
           }
           if (n < 0) {
             n = 0;
           }
-          _this.naviarea.find("a img").each(function(i) {
+          _this.naviarea.find("a > *").each(function(i) {
             $(this).removeClass("active");
             if (n !== i) {
               return $(this).trigger("mouseout");
@@ -351,7 +351,7 @@ $("#slidearea").FlickSlide.setImage([
               x -= _this.areaWidth * 0.5;
             }
             n = Math.round((x * -1) / _this.areaWidth);
-            l = _this.naviarea.find("a img").size();
+            l = _this.naviarea.find("a > *").size();
             if (n > l - 1) {
               n = l - 1;
             }
