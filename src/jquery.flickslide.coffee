@@ -1,5 +1,5 @@
 ###
-jquery.flickslide.js v 1.1
+jquery.flickslide.js v 1.2
 Copyright (c) 2012 SHIFTBRAIN Inc.
 Licensed under the MIT license.
 
@@ -174,9 +174,15 @@ do (jQuery) ->
 						, 1000/100
 
 			$.fn.FlickSlide.resize = =>
-				$(@).FlickSlide.updateSize()
-				$(@).FlickSlide.setImagesPosition()
-				$(@).FlickSlide.updateNavi(@x)				
+				if @imagearea.size() > 0
+					$(@).FlickSlide.updateSize()
+					$(@).FlickSlide.setImagesPosition()
+					$(@).FlickSlide.updateNavi(@x)
+				else
+					if Util?
+						Util.window.unbindResize($(@).FlickSlide.resize)
+					else
+						$(window).unbind("resize", $(@).FlickSlide.resize)					
 
 			$.fn.FlickSlide.updateSize = =>
 				if options.width > 0
@@ -208,9 +214,9 @@ do (jQuery) ->
 					if i < l
 						$(el).css("display", "block").click (e)=>
 							@waitTime = 0
-							x = i * @areaWidth * -1
-							@stage.animate({left:x}, options.duration, options.easing)
-							$(@).FlickSlide.updateNavi(x)
+							@x = i * @areaWidth * -1
+							@stage.animate({left:@x}, options.duration, options.easing)
+							$(@).FlickSlide.updateNavi(@x)
 							e.preventDefault()
 							e.stopPropagation()
 					else

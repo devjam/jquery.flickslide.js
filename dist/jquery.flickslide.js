@@ -1,5 +1,5 @@
 /*
-jquery.flickslide.js v 1.1
+jquery.flickslide.js v 1.2
 Copyright (c) 2012 SHIFTBRAIN Inc.
 Licensed under the MIT license.
 
@@ -27,18 +27,18 @@ naviarea: navi container
 ## example:basic
 html
 <div id="slidearea"><!-- slidearea: total container -->
-  <div class="imagearea"><!-- imagearea: image view area -->
-    <ul class="slidecontent"><!-- slidecontent: image container -->
-      <li><img src="img/cut1.jpg" alt="" /></li>
-      <li><img src="img/cut2.jpg" alt="" /></li>
-      <li><img src="img/cut3.jpg" alt="" /></li>
-      <li><img src="img/cut4.jpg" alt="" /></li>
-      <li><img src="img/cut5.jpg" alt="" /></li>
-    </ul>
-  </div><!-- /imagearea -->
-  <ul class="naviarea"><!-- naviarea: navi container -->
-    <li class="navibtn"><a href="javascript:void(0);" onclick="return false;"><img src="img/btn_slide_off.gif" width="17" height="16" /></a></li><!--
-  </ul>
+	<div class="imagearea"><!-- imagearea: image view area -->
+		<ul class="slidecontent"><!-- slidecontent: image container -->
+			<li><img src="img/cut1.jpg" alt="" /></li>
+			<li><img src="img/cut2.jpg" alt="" /></li>
+			<li><img src="img/cut3.jpg" alt="" /></li>
+			<li><img src="img/cut4.jpg" alt="" /></li>
+			<li><img src="img/cut5.jpg" alt="" /></li>
+		</ul>
+	</div><!-- /imagearea -->
+	<ul class="naviarea"><!-- naviarea: navi container -->
+		<li class="navibtn"><a href="javascript:void(0);" onclick="return false;"><img src="img/btn_slide_off.gif" width="17" height="16" /></a></li><!--
+	</ul>
 </div><!-- /slidearea -->
 
 JavaScript
@@ -56,8 +56,6 @@ $("#slidearea").FlickSlide.setImage([
 	"img/cut5.jpg",
 ]);
 */
-
-
 (function() {
 
   (function(jQuery) {
@@ -194,9 +192,17 @@ $("#slidearea").FlickSlide.setImage([
           }
         };
         $.fn.FlickSlide.resize = function() {
-          $(_this).FlickSlide.updateSize();
-          $(_this).FlickSlide.setImagesPosition();
-          return $(_this).FlickSlide.updateNavi(_this.x);
+          if (_this.imagearea.size() > 0) {
+            $(_this).FlickSlide.updateSize();
+            $(_this).FlickSlide.setImagesPosition();
+            return $(_this).FlickSlide.updateNavi(_this.x);
+          } else {
+            if (typeof Util !== "undefined" && Util !== null) {
+              return Util.window.unbindResize($(_this).FlickSlide.resize);
+            } else {
+              return $(window).unbind("resize", $(_this).FlickSlide.resize);
+            }
+          }
         };
         $.fn.FlickSlide.updateSize = function() {
           var w;
@@ -236,13 +242,12 @@ $("#slidearea").FlickSlide.setImage([
           return _this.naviarea.find("a > *").each(function(i, el) {
             if (i < l) {
               return $(el).css("display", "block").click(function(e) {
-                var x;
                 _this.waitTime = 0;
-                x = i * _this.areaWidth * -1;
+                _this.x = i * _this.areaWidth * -1;
                 _this.stage.animate({
-                  left: x
+                  left: _this.x
                 }, options.duration, options.easing);
-                $(_this).FlickSlide.updateNavi(x);
+                $(_this).FlickSlide.updateNavi(_this.x);
                 e.preventDefault();
                 return e.stopPropagation();
               });
