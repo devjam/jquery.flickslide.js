@@ -1,6 +1,6 @@
 jquery.flickslide.js
 ====================
-v 1.1  
+v 1.2  
 Copyright (c) 2012 SHIFTBRAIN Inc.  
 Licensed under the MIT license.  
 https://github.com/devjam  
@@ -86,3 +86,7 @@ naviarea: navi container
 ## HISTORY
 _2012.12.18 : v1.1_
 - モリスライドからバージョンアップ
+
+_2012.12.27 : v1.2_
+- 挙動のおかしな点を修正
+- windowリサイズイベントが残らないような処理追加(未検証)
