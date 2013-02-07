@@ -10,7 +10,7 @@
               resize: true,
               easing: "easeOutExpo"
             });
-            return $("#slidearea").FlickSlide.initSlide();
+            return $("#slidearea").FlickSlide("init");
           });
         })(jQuery);
       });

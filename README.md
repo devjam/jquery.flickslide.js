@@ -1,7 +1,7 @@
 jquery.flickslide.js
 ====================
-v 1.2  
-Copyright (c) 2012 SHIFTBRAIN Inc.  
+v 1.4  
+Copyright (c) 2013 SHIFTBRAIN Inc.  
 Licensed under the MIT license.  
 https://github.com/devjam  
 
@@ -43,6 +43,18 @@ slidecontent: image container
 naviarea: navi container  
 1 navibtn code  
 
+## EVENT
+slidestart(e, id)  
+
+## method
+.FlickSlide({config})  
+.FlickSlide("init")  
+.FlickSlide("update")  
+.FlickSlide("resize")  
+.FlickSlide("destory")  
+.FlickSlide("setImage", [urls])  
+
+
 ### example:basic
 >  html
 >  `
@@ -65,14 +77,14 @@ naviarea: navi container
 >  JavaScript
 >  `
 >      $("#slidearea").FlickSlide({interval:500, resize:true, easing:"easeOutExpo"});  
->      $("#slidearea").FlickSlide.initSlide();  
+>      $("#slidearea").FlickSlide("init");  
 >  `
 
 ### example:replace image
 >  JavaScript
 >  `
 >      $("#slidearea").FlickSlide({interval:500, resize:true, easing:"easeOutExpo"});  
->      $("#slidearea").FlickSlide.setImage([  
+>      $("#slidearea").FlickSlide("setImage", [  
 >  	    "img/cut1.jpg",  
 >  	    "img/cut2.jpg",  
 >  	    "img/cut3.jpg",  
@@ -84,9 +96,12 @@ naviarea: navi container
 ---
 
 ## HISTORY
-_2012.12.18 : v1.1_
-- モリスライドからバージョンアップ
+_2013.02.07 : v1.4_
+- プラグインの構造を全面的に改定
 
 _2012.12.27 : v1.2_
 - 挙動のおかしな点を修正
 - windowリサイズイベントが残らないような処理追加(未検証)
+
+_2012.12.18 : v1.1_
+- モリスライドからバージョンアップ
